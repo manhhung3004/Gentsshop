@@ -26,17 +26,25 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build Application
+        run: npm run build
+
       - name: Build Docker Image
         run: |
-          docker build -t gentsshop-frontend:latest . -FE
+          docker build -t gentsshop-frontend:latest -f Dockerfile.Frontend.v2 .
+          docker tag gentsshop-frontend:latest gentsshop-frontend:${{ github.sha }}
+
       - name: Push Docker Image to Registry
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-          docker tag gentsshop-frontend:latest $DOCKER_USERNAME/gentsshop-frontend:latest
           docker push $DOCKER_USERNAME/gentsshop-frontend:latest
+          docker push $DOCKER_USERNAME/gentsshop-frontend:${{ github.sha }}
 
   be:
     name: Backend CI
@@ -58,15 +66,20 @@ jobs:
           node-version: 20
           cache: npm
           cache-dependency-path: backend/package-lock.json
-          
+
+      - name: Install Dependencies
+        run: npm install
+
       - name: Build Docker Image
         run: |
-          docker build -t gentsshop-backend:latest . -BE
+          docker build -t gentsshop-backend:latest -f Dockerfile .
+          docker tag gentsshop-backend:latest gentsshop-backend:${{ github.sha }}
+
       - name: Push Docker Image to Registry
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-          docker tag gentsshop-backend:latest $DOCKER_USERNAME/gentsshop-backend:latest
           docker push $DOCKER_USERNAME/gentsshop-backend:latest
+          docker push $DOCKER_USERNAME/gentsshop-backend:${{ github.sha }}
