@@ -11,7 +11,7 @@ import {
   Container,
   Divider,
 } from "@material-ui/core";
-import { ExitToApp as LogoutIcon, Edit as EditIcon, VpnKey as PasswordIcon } from "@material-ui/icons";
+import { ExitToApp as LogoutIcon, Edit as EditIcon, VpnKey as PasswordIcon, ShoppingCart as ShoppingBagIcon } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import "./Profile.css";
 import { useHistory } from "react-router-dom";
@@ -19,7 +19,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 import { motion } from "framer-motion";
-import ShoppingBagIcon from "@material-ui/icons/ShoppingBag";
 import MetaData from "../layouts/MataData/MataData";
 
 const ProfilePage = () => {
