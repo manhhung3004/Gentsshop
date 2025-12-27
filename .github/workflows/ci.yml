@@ -10,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     if: >
       github.event.review.state == 'approved' &&
-      github.event.pull_request.base.ref == 'master' &&
-      startsWith(github.event.pull_request.head.ref, 'feature')
+      github.event.pull_request.base.ref == 'master'
 
     defaults:
       run:
@@ -51,8 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     if: >
       github.event.review.state == 'approved' &&
-      github.event.pull_request.base.ref == 'master' &&
-      startsWith(github.event.pull_request.head.ref, 'feature')
+      github.event.pull_request.base.ref == 'master'
 
     defaults:
       run:
