@@ -3,14 +3,19 @@ name: Gentsshop CI
 on:
   pull_request_review:
     types: [submitted]
+  push:
+    branches:
+      - master
 
 jobs:
   fe:
     name: Frontend CI
     runs-on: ubuntu-latest
     if: >
-      github.event.review.state == 'approved' &&
-      github.event.pull_request.base.ref == 'master'
+      (github.event_name == 'push') ||
+      (github.event_name == 'pull_request_review' && 
+       github.event.review.state == 'approved' &&
+       github.event.pull_request.base.ref == 'master')
 
     defaults:
       run:
@@ -49,8 +54,10 @@ jobs:
     name: Backend CI
     runs-on: ubuntu-latest
     if: >
-      github.event.review.state == 'approved' &&
-      github.event.pull_request.base.ref == 'master'
+      (github.event_name == 'push') ||
+      (github.event_name == 'pull_request_review' && 
+       github.event.review.state == 'approved' &&
+       github.event.pull_request.base.ref == 'master')
 
     defaults:
       run:
