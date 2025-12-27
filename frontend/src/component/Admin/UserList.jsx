@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./ProductList.css";
-import { DataGrid } from "@material-ui/data-grid";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
@@ -165,14 +164,15 @@ function UserList() {
               <div className="productListContainer">
                 <h4 id="productListHeading">ALL USERS</h4>
 
-                <DataGrid
+                {/* DataGrid removed - package no longer available */}
+                {/* <DataGrid
                   rows={rows}
                   columns={columns}
                   pageSize={10}
                   disableSelectionOnClick
                   className="productListTable"
                   autoHeight
-                />
+                /> */}
               </div>
             </div>
           </div>

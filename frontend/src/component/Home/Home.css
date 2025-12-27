@@ -1,36 +1,130 @@
-.trending_heading {
+.Home_Page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 2rem 0;
+}
 
-    text-align: center;
-    margin-top: 2.7rem;
-    margin-bottom: 20px;
-    font-family: "Archivo", sans-serif;
+.heroSlider_Home {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.feature {
+  margin-top: 3.5rem;
+  padding: 2rem 1.8rem;
+  background: #ffffff;
+  border-radius: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1440px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.feature h2 {
+  text-align: center;
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  margin: 0 0 2rem 0;
+  color: #1a1a1a;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.feature h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37 0%, #b8941f 100%);
+  border-radius: 2px;
+}
+
+.trending_heading {
+  text-align: center;
+  margin-top: 3.5rem;
+  margin-bottom: 2rem;
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: #1a1a1a;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.trending_heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #d4af37 0%, #b8941f 100%);
+  border-radius: 2px;
+}
+
+.trending-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.8rem;
+  margin: 0 1.8rem;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 480px) {
   .trending-products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.8rem;
-    margin: 0 1.8rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 0 1rem;
   }
-  
-  @media only screen and (min-width: 600px) {
-    .trending-products {
-      max-width: 960px;
-      margin: 0 auto;
-    }
+
+  .feature {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 1.5rem 1rem;
   }
-  
-  @media only screen and (min-width: 960px) {
-    .trending-products {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+
+  .trending_heading,
+  .feature h2 {
+    font-size: 1.5rem;
   }
-  
-  @media only screen and (min-width: 1200px) {
-    .trending-products {
-      max-width: 1440px;
-      margin: 0 auto;
-    }
+}
+
+@media only screen and (min-width: 600px) {
+  .trending-products {
+    max-width: 960px;
+    margin: 0 auto;
   }
+}
+
+@media only screen and (min-width: 960px) {
+  .trending-products {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .trending-products {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}

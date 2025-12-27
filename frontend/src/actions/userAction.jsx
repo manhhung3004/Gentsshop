@@ -97,20 +97,24 @@ export const load_UserProfile = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    // Check if user data is available in session storage
-    const userData = sessionStorage.getItem("user");
-    if (userData !== "undefined" && userData && userData !== undefined ) {
-      // Parse the user data from JSON format stored in session storage
-      const user = JSON.parse(userData);
-       dispatch({ type: LOAD_USER_SUCCESS, payload: user });
-    } else {
-      // If user data is not available in session storage, make a backend API call
-      const { data } = await axios.get("api/v1/profile");
-   
-      dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
-
-      // Save the user data to session storage for future use
-      sessionStorage.setItem("user", JSON.stringify(data.user));
+    // Always fetch fresh user data from backend
+    // This ensures auth state is always in sync with server
+    try {
+      const { data } = await axios.get("/api/v1/profile");
+      
+      if (data && data.user) {
+        dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
+        // Save to sessionStorage for offline reference only
+        sessionStorage.setItem("user", JSON.stringify(data.user));
+      } else {
+        // No user data returned = not authenticated
+        dispatch({ type: LOAD_USER_FAIL, payload: "Not authenticated" });
+        sessionStorage.removeItem("user");
+      }
+    } catch (apiError) {
+      // API call failed or 401 unauthorized
+      dispatch({ type: LOAD_USER_FAIL, payload: apiError.message });
+      sessionStorage.removeItem("user");
     }
   } catch (error) {
     dispatch({ type: LOAD_USER_FAIL, payload: error.message });

@@ -1,0 +1,171 @@
+/* Mobile & Tablet Responsive Improvements */
+
+/* Extra Small Devices (< 480px) */
+@media only screen and (max-width: 480px) {
+  /* Global */
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 1.5rem !important;
+  }
+
+  h2 {
+    font-size: 1.25rem !important;
+  }
+
+  /* Product Cards */
+  .trending-products {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.8rem;
+    margin: 0 0.5rem;
+  }
+
+  /* Buttons */
+  button {
+    padding: 10px 16px !important;
+    font-size: 13px !important;
+  }
+
+  /* Inputs */
+  input,
+  select,
+  textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  /* Images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Small Devices (480px - 600px) */
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .trending-products {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 0 1rem;
+  }
+
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Medium Devices (600px - 960px) */
+@media only screen and (min-width: 600px) and (max-width: 960px) {
+  .trending-products {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin: 0 1rem;
+  }
+
+  .featured_slides {
+    width: calc((100% - 50px) / 2) !important;
+    height: 350px;
+  }
+}
+
+/* Large Devices (960px+) */
+@media only screen and (min-width: 960px) {
+  .trending-products {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.8rem;
+    margin: 0 1.8rem;
+  }
+
+  .featured_slides {
+    width: calc((100% - 100px) / 3) !important;
+  }
+}
+
+/* Very Large Devices (1440px+) */
+@media only screen and (min-width: 1440px) {
+  .trending-products {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+
+/* Tablet Landscape */
+@media only screen and (min-width: 768px) and (orientation: landscape) {
+  .heroSlider_Home {
+    height: 60vh;
+  }
+
+  .featured_swiper {
+    padding: 30px 0;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+  }
+
+  .no-print {
+    display: none;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Optimize for retina displays */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+  }
+
+  .Home_Page {
+    background: #1a1a1a;
+  }
+
+  .feature {
+    background: #2a2a2a;
+    border-color: #3a3a3a;
+  }
+
+  .featured_slides {
+    background-color: #2a2a2a !important;
+    border-color: #3a3a3a;
+  }
+}
+
+/* Touch Devices - Larger tap targets */
+@media (hover: none) and (pointer: coarse) {
+  button,
+  a,
+  .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

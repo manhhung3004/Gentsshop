@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./ProductList.css";
-import { DataGrid } from "@material-ui/data-grid";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 import {
@@ -400,14 +399,15 @@ function ProductReviews() {
                 {reviews && reviews.length > 0 ? (
                   <div className="productListContainer">
                     <h4 id="productListHeading">ALL PRODUCTS</h4>
-                    <DataGrid
+                    {/* DataGrid removed - package no longer available */}
+                    {/* <DataGrid
                       rows={rows}
                       columns={columns}
                       pageSize={10}
                       autoHeight
                       disableSelectionOnClick
                       className="productListTable"
-                    />
+                    /> */}
                   </div>
                 ) : (
                   <h1 className={classes.heading_02}>No Reviews Found</h1>

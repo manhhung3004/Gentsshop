@@ -5,10 +5,14 @@ import { load_UserProfile } from "./actions/userAction";
 import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import theme from "./theme/theme";
 import CricketBallLoader from "./component/layouts/loader/Loader";
 import PrivateRoute from "./component/Route/PrivateRoute";
 
 import "./App.css";
+import "./styles/responsive.css";
 
 import Header from "./component/layouts/Header1.jsx/Header";
 import Payment from "./component/Cart/Payment";
@@ -97,7 +101,8 @@ function App() {
   }, []);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Router>
         <Switch>
           <Route
@@ -465,7 +470,7 @@ function App() {
           </Route>
         </Elements>
       </Router>
-    </>
+    </ThemeProvider>
   );
 }
 

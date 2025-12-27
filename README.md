@@ -1,4 +1,4 @@
-# Gentsshop E-Commerce Shopping App (Manefest) -tesst
+# Gentsshop E-Commerce Shopping App
 ---
 ## Introduction
 ---
