@@ -7,18 +7,23 @@ import {
   Typography,
   Grid,
   Avatar,
+  Container,
+  Card,
+  Box,
 } from "@material-ui/core";
 import useStyles from "./LoginFromStyle";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
+import EmailIcon from "@mui/icons-material/Email";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { login, clearErrors } from "../../actions/userAction";
 import CricketBallLoader from "../layouts/loader/Loader";
 import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
-import MetaData from "../layouts/MataData/MataData"
+import MetaData from "../layouts/MataData/MataData";
+import { motion } from "framer-motion";
 
 export default function Login() {
 
@@ -78,101 +83,178 @@ export default function Login() {
      }
 
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
+  const formVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+
   return (
     <>
       <MetaData title={"Login"} />
       {loading ? (
         <CricketBallLoader />
       ) : (
-        <div className={classes.formContainer}>
-          <form className={classes.form}>
-            <Avatar className={classes.avatar}>
-              <LockOpenIcon />
-            </Avatar>
-            <Typography variant="h5" component="h1" className={classes.heading}>
-              Sign in to Your Account
-            </Typography>
-            <TextField
-              label="Email"
-              variant="outlined"
-              fullWidth
-              className={`${classes.emailInput} ${classes.textField}`}
-              value={email}
-              onChange={handleEmailChange}
-              error={!isValidEmail && email !== ""}
-              helperText={
-                !isValidEmail && email !== ""
-                  ? "Please enter a valid email address."
-                  : ""
-              }
-            />
-            <TextField
-              label="Password"
-              variant="outlined"
-              type={showPassword ? "text" : "password"}
-              fullWidth
-              className={`${classes.passwordInput} ${classes.textField}`}
-              InputProps={{
-                endAdornment: (
-                  <Button
-                    variant="outlined"
-                    className={classes.showPasswordButton}
-                    onClick={handleShowPasswordClick}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </Button>
-                ),
-              }}
-              value={password}
-              onChange={handlePasswordChange}
-            />
-            <Grid container className={classes.rememberMeContainer}>
-              <Grid item>
-                <FormControlLabel
-                  control={<Checkbox color="primary" />}
-                  label="Remember me"
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className={classes.formContainer}
+        >
+          <Card className={classes.card}>
+            <motion.form
+              variants={formVariants}
+              className={classes.form}
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              >
+                <Avatar className={classes.avatar}>
+                  <LockOpenIcon />
+                </Avatar>
+              </motion.div>
+
+              <Typography variant="h4" component="h1" className={classes.heading}>
+                Welcome Back
+              </Typography>
+
+              <Typography variant="body2" className={classes.subHeading}>
+                Sign in to your account to continue shopping
+              </Typography>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <TextField
+                  label="Email Address"
+                  variant="outlined"
+                  fullWidth
+                  type="email"
+                  className={`${classes.emailInput} ${classes.textField}`}
+                  value={email}
+                  onChange={handleEmailChange}
+                  error={!isValidEmail && email !== ""}
+                  helperText={
+                    !isValidEmail && email !== ""
+                      ? "Please enter a valid email address."
+                      : ""
+                  }
+                  InputProps={{
+                    startAdornment: (
+                      <Box mr={1}>
+                        <EmailIcon style={{ color: "#d4af37" }} />
+                      </Box>
+                    ),
+                  }}
                 />
-              </Grid>
-              <Grid item>
-                <Link
-                  to="/password/forgot"
-                  className={classes.forgotPasswordLink}
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                <TextField
+                  label="Password"
+                  variant="outlined"
+                  type={showPassword ? "text" : "password"}
+                  fullWidth
+                  className={`${classes.passwordInput} ${classes.textField}`}
+                  InputProps={{
+                    endAdornment: (
+                      <Button
+                        variant="text"
+                        className={classes.showPasswordButton}
+                        onClick={handleShowPasswordClick}
+                        size="small"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </Button>
+                    ),
+                  }}
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                <Grid container className={classes.rememberMeContainer}>
+                  <Grid item xs={6}>
+                    <FormControlLabel
+                      control={<Checkbox color="primary" />}
+                      label="Remember me"
+                    />
+                  </Grid>
+                  <Grid item xs={6} style={{ textAlign: "right" }}>
+                    <Link
+                      to="/password/forgot"
+                      className={classes.forgotPasswordLink}
+                    >
+                      Forgot password?
+                    </Link>
+                  </Grid>
+                </Grid>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className={classes.buttonContainer}
+              >
+                <Button
+                  variant="contained"
+                  className={classes.loginButton}
+                  fullWidth
+                  disabled={isSignInDisabled}
+                  onClick={handleLoginSubmit}
+                  size="large"
                 >
-                  Forgot your password?
+                  Sign In
+                </Button>
+              </motion.div>
+
+              <Typography
+                variant="body2"
+                className={classes.termsAndConditionsText}
+              >
+                By signing in, you agree to our{" "}
+                <Link to="/policy/privacy" className={classes.privacyText}>
+                  Privacy Policy
                 </Link>
-              </Grid>
-            </Grid>
-            <Typography
-              variant="body2"
-              className={classes.termsAndConditionsText}
-            >
-              I accept the manefest Terms of Use and acknowledge Cricket
-              Weapon will use my information in accordance with its
-              <Link to="/policy/privacy" className={classes.privacyText}>
-                Privacy Policy.
-              </Link>
-            </Typography>
-            <Button
-              variant="contained"
-              className={classes.loginButton}
-              fullWidth
-              disabled={isSignInDisabled}
-              onClick={handleLoginSubmit}
-            >
-              Sign in
-            </Button>
-            <Typography
-              variant="body1"
-              align="center"
-              style={{ marginTop: "1rem" }}
-            >
-              Don't have an account?
-              <Link to="/signup" className={classes.createAccount}>
-                Create Account
-              </Link>
-            </Typography>
-          </form>
-        </div>
+              </Typography>
+
+              <Box className={classes.signupBox}>
+                <Typography variant="body2">
+                  Don't have an account?{" "}
+                  <Link to="/signup" className={classes.createAccount}>
+                    Create Account
+                  </Link>
+                </Typography>
+              </Box>
+            </motion.form>
+          </Card>
+        </motion.div>
       )}
     </>
   );
