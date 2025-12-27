@@ -1,203 +1,263 @@
 .rootProfile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f7f7f7;
-    min-height: 100vh;
-    padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  min-height: 100vh;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.header-root {
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.headingProfile {
+  text-align: center;
+  font-weight: 700 !important;
+  font-size: 32px !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+  letter-spacing: -0.5px;
+}
+
+.greeting {
+  font-size: 16px;
+  color: #d4af37 !important;
+  font-weight: 500 !important;
+  margin-top: 0.5rem;
+}
+
+.profileContentWrapper {
+  margin: 0 auto;
+}
+
+/* Cards */
+.profileCard {
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #ffffff;
+  height: 100%;
+}
+
+.profileCard:hover {
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+}
+
+.profileCard.dangerZone {
+  border-color: rgba(244, 67, 54, 0.2);
+}
+
+.profileCardContent {
+  padding: 2rem !important;
+}
+
+/* Avatar */
+.profileAvatar {
+  width: 120px !important;
+  height: 120px !important;
+  font-size: 3rem !important;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+  box-shadow: 0 4px 16px rgba(26, 26, 26, 0.25);
+  border: 3px solid #d4af37;
+}
+
+.profileName {
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+  margin: 0.5rem 0 0 0;
+}
+
+.profileEmail {
+  color: #666666 !important;
+  margin-top: 0.25rem;
+}
+
+.memberChip {
+  background-color: rgba(212, 175, 55, 0.1) !important;
+  color: #d4af37 !important;
+  border-color: #d4af37 !important;
+}
+
+/* Section Titles */
+.sectionTitle {
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+  font-size: 18px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sectionTitle.dangerTitle {
+  color: #f44336 !important;
+}
+
+.cardTitle {
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+  font-size: 16px !important;
+  margin: 0 !important;
+}
+
+/* Detail Labels & Values */
+.detailLabel {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #999999 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem !important;
+}
+
+.detailValue {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* Buttons */
+.actionButton {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  padding: 10px 20px !important;
+  text-transform: none !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.actionButton:hover {
+  background-color: #d4af37 !important;
+  color: #1a1a1a !important;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3) !important;
+}
+
+.editButton {
+  color: #1a1a1a !important;
+  border-color: #d4af37 !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  text-transform: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.editButton:hover {
+  border-color: #1a1a1a !important;
+  background-color: rgba(26, 26, 26, 0.05) !important;
+}
+
+.logoutButton {
+  background-color: #f44336 !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  padding: 12px 20px !important;
+  text-transform: none !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.logoutButton:hover {
+  background-color: #d32f2f !important;
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3) !important;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 960px) {
+  .headingProfile {
+    font-size: 26px !important;
+  }
+
+  .profileAvatar {
+    width: 100px !important;
+    height: 100px !important;
+    font-size: 2.5rem !important;
+  }
+
+  .header-root {
+    padding: 2rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .rootProfile {
+    padding-top: 1rem;
     padding-bottom: 2rem;
   }
-  
+
   .header-root {
-    width: 100%;
-    text-align: center;
-    background-color: white;
-    padding: 3rem 0 2.5rem;
-   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-  
-   
+    padding: 1.5rem 1rem;
+    margin-bottom: 1.5rem;
   }
-  
-  .headingProfile{
-    text-align: center;
-    font-weight: 900 !important;
-    font-size: 30px !important;
-    text-transform: uppercase;
-    color: #414141;
-  
+
+  .headingProfile {
+    font-size: 22px !important;
   }
-  
-  .profileConatiner {
-    display: flex;
-    justify-content: space-around;
-    width: 97%;
-    align-items: center;
-    
-  }
-  
-  
-  
-  .leftCotainer {
-    max-width: 27vmax;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 18rem;
-    padding: 0;
-  }
-  
-  
+
   .greeting {
-    font-size: 16px;
-    color: #414141;
-    font-weight: 500 !important;
-  }
-  
-  .profileHeadingLeft {
-    font-size: 1.6rem !important;
-    font-weight: 800 !important;
-    margin-bottom: 1rem !important;
-    color: #212121 !important;
-    background-color: inherit !important;
-    text-transform: uppercase !important; 
-  }
-  
-  
-  
-  .profileHeading {
-    font-size: 18px !important;
-    font-weight: 900 !important;
-    margin-bottom: 1rem !important;
-    color: #212121 !important;
-    text-transform: uppercase !important;
-  }
-  
-  
-  .profileSection {
-    background-color: white;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 1.5rem 2.5rem 3rem 0.5rem;
-  ;
-    border-radius: 3px;
-    margin-bottom: 1rem;
-    text-align: center;
-    padding-top: 1.5rem;
-     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  
-  .profileAvatar {
-    width: 90px !important;
-    height: 90px !important;
-    margin-bottom: 8px !important;
-    font-size: 2rem !important;
-    font-weight: 800 !important;
-    background-color: #414141!important;
-  }
-  
-  
-  .leftDetails {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 23vmax;
-  }
-  
-  .profileSubHeading {
-    font-size: 1rem !important;
-    color: black !important;
-    font-weight: bold !important;
-    text-transform: uppercase;
-    margin: 0;
-    padding: 0;
-  }
-  
-  
-  
-  .profileText {
-    font-size: 1rem !important;
-    color: #414141;
-    text-transform: uppercase;
-  }
-  
-  
-  
-  .profileText2 {
-    font-size: 16px;
-    color: #414141;
-    font-weight: 500 !important;
-  }
-  
-  .profileText3 {
     font-size: 14px;
-    color: black;
-    font-weight: 400;
-    width: 80%;
-    margin-top: -14px;
   }
-  
-  .myOrder {
-    width: 28vmax ;
-    background-color: white !important;
-    text-align: center;
-    padding: 1rem;
-   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-    border-radius: 3px !important;
+
+  .profileAvatar {
+    width: 80px !important;
+    height: 80px !important;
+    font-size: 2rem !important;
   }
-  
-  
-  .ordersButton {
-    width: 100% ;
-    padding: 0.5rem !important;
-    margin-bottom: 8px !important;
-    background-color: #414141 !important;
-    color: #fff !important;
+
+  .profileCardContent {
+    padding: 1.5rem !important;
   }
-  .profileButton {
-    width: 50%  !important;
-    padding: 0.5rem !important;
-    margin:  1rem !important;
-    background-color: #414141 !important;
-    color: #fff !important;
+
+  .sectionTitle {
+    font-size: 16px !important;
   }
-  .ordersButton:hover {
-    background-color: #ed1c24 !important;
+
+  .detailLabel {
+    font-size: 11px !important;
   }
-  
-  
-  .profileButton:hover {
-    background-color: #ed1c24 !important;
+
+  .detailValue {
+    font-size: 14px !important;
   }
-  
-  
-  
-  .rightConatiner {
-    width: 58vmax;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 3rem;
-     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .actionButton,
+  .editButton,
+  .logoutButton {
+    padding: 8px 16px !important;
+    font-size: 13px !important;
   }
-  
-  .righHeadings {
-    padding: 2rem;
+}
+
+@media (max-width: 400px) {
+  .headingProfile {
+    font-size: 18px !important;
   }
-  
-  .detials {
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem 2rem;
-    gap: 10px;
+
+  .profileAvatar {
+    width: 70px !important;
+    height: 70px !important;
+    font-size: 1.8rem !important;
   }
-  
-  .mangeAccount {
-    display: flex;
+
+  .profileCardContent {
+    padding: 1rem !important;
+  }
+
+  .sectionTitle {
+    font-size: 14px !important;
+  }
+}
     margin-top: 2rem;
     flex-direction: column;
     padding: 0rem 2rem;
