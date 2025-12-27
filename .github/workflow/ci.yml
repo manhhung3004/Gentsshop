@@ -1,0 +1,72 @@
+name: Gentsshop CI
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  fe:
+    name: Frontend CI
+    runs-on: ubuntu-latest
+    if: >
+      github.event.review.state == 'approved' &&
+      github.event.pull_request.base.ref == 'master' &&
+      startsWith(github.event.pull_request.head.ref, 'feature')
+
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Build Docker Image
+        run: |
+          docker build -t gentsshop-frontend:latest . -FE
+      - name: Push Docker Image to Registry
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          docker tag gentsshop-frontend:latest $DOCKER_USERNAME/gentsshop-frontend:latest
+          docker push $DOCKER_USERNAME/gentsshop-frontend:latest
+
+  be:
+    name: Backend CI
+    runs-on: ubuntu-latest
+    if: >
+      github.event.review.state == 'approved' &&
+      github.event.pull_request.base.ref == 'master' &&
+      startsWith(github.event.pull_request.head.ref, 'feature')
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+          
+      - name: Build Docker Image
+        run: |
+          docker build -t gentsshop-backend:latest . -BE
+      - name: Push Docker Image to Registry
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          docker tag gentsshop-backend:latest $DOCKER_USERNAME/gentsshop-backend:latest
+          docker push $DOCKER_USERNAME/gentsshop-backend:latest
